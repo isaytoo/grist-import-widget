@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+*.grist
+.env
+.netlify/
+windsurf_deployment.yaml
+.vercel
