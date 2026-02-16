@@ -794,6 +794,29 @@ async function importData() {
       console.log('Table créée avec succès');
       showMessage(t('msgTableCreated', { name: sanitizeForDisplay(selectedTable) }), 'success');
       await loadTables();
+
+      // Re-fetch actual column IDs from the created table
+      var createdTableData = await grist.docApi.fetchTable(selectedTable);
+      var actualColumns = Object.keys(createdTableData).filter(function(col) {
+        return col !== 'id' && col !== 'manualSort';
+      });
+      console.log('Colonnes demandées:', headers);
+      console.log('Colonnes réelles après création:', actualColumns);
+
+      // Remap headers to actual column IDs (Grist may have modified them)
+      if (actualColumns.length > 0) {
+        var remappedHeaders = headers.map(function(h) {
+          // Exact match
+          if (actualColumns.includes(h)) return h;
+          // Case-insensitive match
+          var found = actualColumns.find(function(ac) {
+            return ac.toLowerCase() === h.toLowerCase();
+          });
+          return found || h;
+        });
+        console.log('Headers remappés:', remappedHeaders);
+        headers = remappedHeaders;
+      }
     } else {
       updateProgress(20, t('msgVerifyingTable'));
       console.log('Vérification de la table:', selectedTable);
@@ -857,6 +880,8 @@ async function importData() {
       });
 
       console.log('Import batch ' + (i + 1) + '/' + totalBatches + ': ' + batch.length + ' lignes');
+      console.log('colData keys:', Object.keys(colData));
+      console.log('colData sample (first row):', Object.fromEntries(Object.entries(colData).map(function(e) { return [e[0], e[1][0]]; })));
 
       await grist.docApi.applyUserActions([
         ['BulkAddRecord', selectedTable, Array(batch.length).fill(null), colData]
