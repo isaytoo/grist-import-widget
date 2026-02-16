@@ -814,15 +814,24 @@ async function importData() {
       console.log('Colonnes réelles après création:', actualColumns);
 
       // Remap headers to actual column IDs (Grist may have modified them)
+      // Grist can rename columns (e.g. "ID" -> "ID2" to avoid conflict with internal "id")
       if (actualColumns.length > 0) {
-        var remappedHeaders = headers.map(function(h) {
-          // Exact match
+        // Use positional mapping: the i-th requested column maps to the i-th actual column
+        // This is the most reliable approach since Grist preserves column order
+        var remappedHeaders = headers.map(function(h, idx) {
+          // Exact match first
           if (actualColumns.includes(h)) return h;
           // Case-insensitive match
           var found = actualColumns.find(function(ac) {
             return ac.toLowerCase() === h.toLowerCase();
           });
-          return found || h;
+          if (found) return found;
+          // Positional fallback: use the actual column at the same index
+          if (idx < actualColumns.length) {
+            console.log('Colonne remappée par position:', h, '->', actualColumns[idx]);
+            return actualColumns[idx];
+          }
+          return h;
         });
         console.log('Headers remappés:', remappedHeaders);
         headers = remappedHeaders;
