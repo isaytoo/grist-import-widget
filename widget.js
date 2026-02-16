@@ -795,6 +795,16 @@ async function importData() {
       showMessage(t('msgTableCreated', { name: sanitizeForDisplay(selectedTable) }), 'success');
       await loadTables();
 
+      // Grist may capitalize the table name (e.g. "employes_fictifs" -> "Employes_fictifs")
+      // Find the actual table name from the refreshed list
+      var actualTableName = availableTables.find(function(t) {
+        return t.toLowerCase() === selectedTable.toLowerCase();
+      });
+      if (actualTableName) {
+        console.log('Nom de table réel:', actualTableName, '(demandé:', selectedTable + ')');
+        selectedTable = actualTableName;
+      }
+
       // Re-fetch actual column IDs from the created table
       var createdTableData = await grist.docApi.fetchTable(selectedTable);
       var actualColumns = Object.keys(createdTableData).filter(function(col) {
