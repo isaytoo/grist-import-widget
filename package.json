@@ -1,5 +1,5 @@
 {
-  "name": "grist-import-widget",
+  "name": "@isaytoo/imports",
   "version": "1.0.0",
   "description": "Widget Grist pour importer des fichiers Excel (.xlsx, .xls), CSV et JSON",
   "main": "index.html",
@@ -9,8 +9,8 @@
   },
   "grist": {
     "name": "Data Import (Excel, CSV, JSON)",
-    "url": "https://grist-import-widget.vercel.app/index.html",
-    "widgetId": "grist-import-widget",
+    "url": "https://gristlabs.github.io/grist-widget/imports/",
+    "widgetId": "@isaytoo/widget-imports",
     "published": true,
     "accessLevel": "full",
     "renderAfterReady": true,
