@@ -15,7 +15,7 @@
 
 Standalone custom widget to import Excel (.xlsx, .xls), CSV, and JSON files into Grist tables.
 
-**Widget URL:** `https://grist-import-widget.vercel.app/index.html`
+**Widget URL:** `https://isaytoo.github.io/grist-import-widget/`
 
 ### 🚀 Quick Start
 
@@ -23,7 +23,7 @@ Standalone custom widget to import Excel (.xlsx, .xls), CSV, and JSON files into
 2. Select **"Custom"** as the widget type
 3. Enter the custom widget URL:
    ```
-   https://grist-import-widget.vercel.app/index.html
+   https://isaytoo.github.io/grist-import-widget/
    ```
 4. Set the access level to **"Full document access"**
 5. Done! Drag and drop your files to import them.
@@ -129,7 +129,7 @@ For Grist to load the widget in an iframe, the following headers are configured 
 
 Widget personnalisé autonome permettant d'importer des fichiers Excel (.xlsx, .xls), CSV et JSON dans Grist.
 
-**URL du widget :** `https://grist-import-widget.vercel.app/index.html`
+**URL du widget :** `https://isaytoo.github.io/grist-import-widget/`
 
 ### 🚀 Utilisation rapide
 
@@ -137,7 +137,7 @@ Widget personnalisé autonome permettant d'importer des fichiers Excel (.xlsx, .
 2. Sélectionnez **"Personnalisé"** comme type de widget
 3. Dans l'URL du widget personnalisé, entrez :
    ```
-   https://grist-import-widget.vercel.app/index.html
+   https://isaytoo.github.io/grist-import-widget/
    ```
 4. Définissez le niveau d'accès sur **"Full document access"**
 5. C'est prêt ! Glissez-déposez vos fichiers pour les importer.
