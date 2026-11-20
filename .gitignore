@@ -5,3 +5,10 @@ node_modules/
 .netlify/
 windsurf_deployment.yaml
 .vercel
+
+# Exports Excel et CSV de travail (GIMA, baux…) : données sensibles, jamais sur GitHub.
+# Pour versionner exprès un fichier d exemple : git add -f <fichier>
+*.xlsx
+*.xls
+*.xlsm
+*.csv
